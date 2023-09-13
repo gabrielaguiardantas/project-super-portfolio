@@ -1,25 +1,23 @@
 from django.shortcuts import get_object_or_404, render
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from .models import Project, Profile
-from .serializers import ProjectsSerializer, ProfilesSerializer
-
-# from .permissions import IsOwner
+from .models import Certificate, CertifyingInstitution, Project, Profile
+from .serializers import (
+    CertificateSerializer,
+    ProjectsSerializer,
+    ProfilesSerializer,
+    CertifyingInstitutionSerializer,
+)
 
 
 class ProjectsViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectsSerializer
-    # permission_classes = [IsOwner]
-
-    def perform_create(self, serializer):
-        serializer.save()
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfilesSerializer
-    # permission_classes = [IsOwner]
 
     def get_permissions(self):
         if self.request.method == "GET":
@@ -32,5 +30,21 @@ class ProfileViewSet(viewsets.ModelViewSet):
             return render(request, "profile_detail.html", {"profile": profile})
         return super().retrieve(request, *args, **kwargs)
 
-    def perform_create(self, serializer):
-        serializer.save()
+
+class CertificateViewSet(viewsets.ModelViewSet):
+    queryset = Certificate.objects.all()
+    serializer_class = CertificateSerializer
+
+    # def perform_create(self, serializer):
+    #     print(serializer)
+    #     certificate_without_profiles = {**serializer.validated_data}
+    #     del certificate_without_profiles["profiles"]
+    #     new_certificate = Certificate(**certificate_without_profiles)
+    #     new_certificate.save()
+    #     for profile in serializer.validated_data["profiles"]:
+    #         new_certificate.add_profile(profile)
+
+
+class CertifyingInstitutionViewSet(viewsets.ModelViewSet):
+    queryset = CertifyingInstitution.objects.all()
+    serializer_class = CertifyingInstitutionSerializer

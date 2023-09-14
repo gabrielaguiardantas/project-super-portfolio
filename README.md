@@ -11,3 +11,4 @@ Trigésimo quarto projeto do curso de Desenvolvimento Web Full Stack da _[Trybe]
 
 ## Features implementadas: ##
 
+![Captura de tela de 2023-09-14 14-13-48](https://github.com/gabrielaguiardantas/project-super-portfolio/assets/110852595/94d9a272-3311-4b30-9f16-00a62335655a)

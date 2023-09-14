@@ -45,15 +45,6 @@ class CertificateViewSet(viewsets.ModelViewSet):
     queryset = Certificate.objects.all()
     serializer_class = CertificateSerializer
 
-    # def perform_create(self, serializer):
-    #     print(serializer)
-    #     certificate_without_profiles = {**serializer.validated_data}
-    #     del certificate_without_profiles["profiles"]
-    #     new_certificate = Certificate(**certificate_without_profiles)
-    #     new_certificate.save()
-    #     for profile in serializer.validated_data["profiles"]:
-    #         new_certificate.add_profile(profile)
-
 
 class CertifyingInstitutionViewSet(viewsets.ModelViewSet):
     queryset = CertifyingInstitution.objects.all()
